@@ -69,18 +69,12 @@ public class Scanner {
             case '+': addToken(PLUS); break;
             case ';': addToken(SEMICOLON); break;
             case '*': addToken(STAR); break;
-            case '!':
-                addToken(match('=') ? BANG_EQUAL : BANG);
-                break;
-            case '=':
-                addToken(match('=') ? EQUAL_EQUAL : EQUAL);
-                break;
-            case '<':
-                addToken(match('=') ? LESS_EQUAL : LESS);
-                break;
-            case '>':
-                addToken(match('=') ? GREATER_EQUAL : GREATER);
-                break;
+
+            case '!': addToken(match('=') ? BANG_EQUAL : BANG); break;
+            case '=': addToken(match('=') ? EQUAL_EQUAL : EQUAL); break;
+            case '<': addToken(match('=') ? LESS_EQUAL : LESS); break;
+            case '>': addToken(match('=') ? GREATER_EQUAL : GREATER); break;
+
             case '/':
                 if (match('/')) {
                     while (peek() != '\n' && !isAtEnd()) {
@@ -89,6 +83,7 @@ public class Scanner {
                 } else {
                     addToken(SLASH);
                 }
+                break;
 
             case ' ':
             case '\r':
@@ -96,9 +91,7 @@ public class Scanner {
                 // Ignore whitespace.
                 break;
 
-            case '\n':
-                line++;
-                break;
+            case '\n': line++; break;
 
             case '"': string(); break;
 
